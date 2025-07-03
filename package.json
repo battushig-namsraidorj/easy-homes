@@ -2,11 +2,14 @@
   "name": "easy-homes",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "data:import": "tsx src/db/seeder.ts",
+    "data:destroy": "tsx src/db/seeder.ts -d"
   },
   "dependencies": {
     "@ant-design/nextjs-registry": "^1.0.2",
@@ -20,6 +23,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "prisma": "^6.11.0",
+    "tsx": "^4.20.3",
     "typescript": "^5"
   }
 }
