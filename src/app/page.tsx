@@ -1,8 +1,21 @@
 import React from "react";
 import { Button, Row, Col } from "antd";
 import Image from "next/image";
+import { db } from "@/db";
+import PropertyCards from "./components/PropertyCards";
+import Link from "next/link";
 
-export default function Homepage() {
+export default async function Homepage() {
+  const featuredProperties = await db.property.findMany({
+    where: {
+      isFeatured: true,
+    },
+    include: { images: true },
+    take: 3,
+  });
+
+  console.log(featuredProperties);
+
   return (
     <>
       <div className="container">
@@ -46,6 +59,19 @@ export default function Homepage() {
             </Col>
           </Row>
         </div>
+      </div>
+      <div className="section container-padding featured-properties">
+        <h1 className="heading">Featured Properties</h1>
+        <p className="paragraph mb-1 text-center">
+          Explore our featured properties that are currently available for sale
+          and rent
+        </p>
+        <PropertyCards properties={featuredProperties} />
+        <Link href={"/properties"} className="flex-center">
+          <Button type="primary" className="view-btn" size="large">
+            View Properties
+          </Button>
+        </Link>
       </div>
     </>
   );
