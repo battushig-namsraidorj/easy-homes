@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Row, Col } from "antd";
+import Image from "next/image";
 
 export default function Homepage() {
   return (
@@ -8,10 +9,14 @@ export default function Homepage() {
         <div className="section">
           <Row gutter={[32, 32]}>
             <Col xs={24} md={12}>
-              <img
+              <Image
+                width={0}
+                height={0}
+                sizes="100vw"
                 src="/images/about-us.jpg"
                 alt="about-us"
                 className="about-us-image expand"
+                priority
               />
             </Col>
             <Col xs={24} md={12}>
