@@ -1,14 +1,26 @@
 "use client";
+import { getProperties } from "@/actions";
+import PropertyCards from "@/components/PropertyCards";
+import { PropertyWithImages } from "@/db";
 import { Breadcrumb, Col, Form, Row, Select } from "antd";
 import React, { useEffect, useState } from "react";
 
 export default function Properties() {
   const [sortOrder, setSortOrder] = useState("latest");
-  useEffect(()=>{
-    try {
-      
-    }
-  })
+  const [properties, setProperties] = useState<PropertyWithImages[]>([]);
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const properties = await getProperties();
+        setProperties(properties);
+      } catch (error) {
+        console.error("Error fetching Properties", error);
+      }
+    };
+    fetchProperties();
+  }, []);
+  console.log(properties);
   return (
     <div className="container">
       <h1 className="heading">Properties</h1>
@@ -26,10 +38,10 @@ export default function Properties() {
       />
       <div className="sticky-container mt-1">
         <Row gutter={[16, 16]} wrap>
-          <Col xs={24} md={8} className="scrollable-column">
+          <Col xs={24} md={8} className="sticky-column">
             Filters
           </Col>
-          <Col xs={24} md={16}>
+          <Col xs={24} md={16} className="scrollable-column">
             <Form.Item label="Sort By" name={"sort_by"} className="mb-1">
               <Select
                 defaultValue={"latest"}
@@ -43,6 +55,7 @@ export default function Properties() {
                 ]}
               />
             </Form.Item>
+            <PropertyCards layout={"horizontal"} properties={properties} />
           </Col>
         </Row>
       </div>
