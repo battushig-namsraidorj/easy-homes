@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Row, Col } from "antd";
 import Image from "next/image";
 import { db } from "@/db";
-import PropertyCards from "./components/PropertyCards";
+import PropertyCards from "../components/PropertyCards";
 import Link from "next/link";
 
 export default async function Homepage() {

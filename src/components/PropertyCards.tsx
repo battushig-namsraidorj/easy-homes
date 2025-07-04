@@ -34,7 +34,6 @@ export default function PropertyCards({
                       alt="property image"
                       width={0}
                       height={200}
-                      objectFit="cover"
                       sizes="100vw"
                       className="image-br"
                       priority
@@ -47,7 +46,6 @@ export default function PropertyCards({
                     width={0}
                     height={200}
                     sizes="100vw"
-                    objectFit="cover"
                     className="image-br"
                   />
                 )}
